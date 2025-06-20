@@ -632,9 +632,9 @@ def main():
             if "PLUGIN_SCHEME=" in line:
                 scheme = re.search('"(.+)"', line).group(1)
             if "PLUGIN_DATASTORE_PORTS=" in line:
-                ports = re.search("\((.+)\)", line).group(1).split(" ")
+                ports = re.search(r"\((.+)\)", line).group(1).split(" ")
             if "PLUGIN_UNIMPLEMENTED_SUBCOMMANDS=" in line:
-                match = re.search("\((.+)\)", line)
+                match = re.search(r"\((.+)\)", line)
                 if match is not None:
                     unimplemented = [s.strip('"') for s in match.group(1).split(" ")]
 
@@ -649,7 +649,7 @@ def main():
     with open("plugin.toml") as f:
         for line in f.readlines():
             if line.startswith("sponsors"):
-                sponsors = re.search('\[(["\w\s,_-]+)\]', line).group(1)
+                sponsors = re.search(r'\[(["\w\s,_-]+)\]', line).group(1)
                 sponsors = [s.strip('"') for s in sponsors.split(",")]
 
     text = compile(
