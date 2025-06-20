@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 _DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export MYSQL_IMAGE=${MYSQL_IMAGE:="$(awk -F '[ :]' '{print $2}' "${_DIR}/Dockerfile")"}
-export MYSQL_IMAGE_VERSION=${MYSQL_IMAGE_VERSION:="$(awk -F '[ :]' '{print $3}' "${_DIR}/Dockerfile")"}
-export MYSQL_ROOT=${MYSQL_ROOT:="$DOKKU_LIB_ROOT/services/mysql"}
+export DOLT_IMAGE=${DOLT_IMAGE:="$(awk -F '[ :]' '{print $2}' "${_DIR}/Dockerfile")"}
+export DOLT_IMAGE_VERSION=${DOLT_IMAGE_VERSION:="$(awk -F '[ :]' '{print $3}' "${_DIR}/Dockerfile")"}
+export DOLT_ROOT=${DOLT_ROOT:="$DOKKU_LIB_ROOT/services/dolt"}
 export DOKKU_LIB_HOST_ROOT=${DOKKU_LIB_HOST_ROOT:=$DOKKU_LIB_ROOT}
-export MYSQL_HOST_ROOT=${MYSQL_HOST_ROOT:="$DOKKU_LIB_HOST_ROOT/services/mysql"}
+export DOLT_HOST_ROOT=${DOLT_HOST_ROOT:="$DOKKU_LIB_HOST_ROOT/services/dolt"}
 
-export PLUGIN_UNIMPLEMENTED_SUBCOMMANDS=()
-export PLUGIN_COMMAND_PREFIX="mysql"
+export PLUGIN_UNIMPLEMENTED_SUBCOMMANDS=(app-links backup backup-auth backup-deauth backup-schedule backup-schedule-cat backup-set-encryption backup-set-public-key-encryption backup-unschedule backup-unset-encryption backup-unset-public-key-encryption clone connect create destroy enter exists export expose import info link linked links list logs pause promote restart set start stop unexpose unlink upgrade)
+export PLUGIN_COMMAND_PREFIX="dolt"
 export PLUGIN_CONFIG_ROOT=${PLUGIN_CONFIG_ROOT:="$DOKKU_LIB_ROOT/config/$PLUGIN_COMMAND_PREFIX"}
-export PLUGIN_DATA_ROOT=$MYSQL_ROOT
-export PLUGIN_DATA_HOST_ROOT=$MYSQL_HOST_ROOT
+export PLUGIN_DATA_ROOT=$DOLT_ROOT
+export PLUGIN_DATA_HOST_ROOT=$DOLT_HOST_ROOT
 export PLUGIN_DATASTORE_PORTS=(3306)
 export PLUGIN_DATASTORE_WAIT_PORT=3306
 export PLUGIN_DEFAULT_ALIAS="DATABASE"
-export PLUGIN_DISABLE_PULL=${MYSQL_DISABLE_PULL:=}
-export PLUGIN_DISABLE_PULL_VARIABLE="MYSQL_DISABLE_PULL"
-export PLUGIN_ALT_ALIAS="DOKKU_MYSQL"
-export PLUGIN_IMAGE=$MYSQL_IMAGE
-export PLUGIN_IMAGE_VERSION=$MYSQL_IMAGE_VERSION
-export PLUGIN_SCHEME="mysql"
-export PLUGIN_SERVICE="MySQL"
-export PLUGIN_VARIABLE="MYSQL"
+export PLUGIN_DISABLE_PULL=${DOLT_DISABLE_PULL:=}
+export PLUGIN_DISABLE_PULL_VARIABLE="DOLT_DISABLE_PULL"
+export PLUGIN_ALT_ALIAS="DOKKU_DOLT"
+export PLUGIN_IMAGE=$DOLT_IMAGE
+export PLUGIN_IMAGE_VERSION=$DOLT_IMAGE_VERSION
+export PLUGIN_SCHEME="dolt"
+export PLUGIN_SERVICE="Dolt"
+export PLUGIN_VARIABLE="DOLT"
 export PLUGIN_BASE_PATH="$PLUGIN_PATH"
 export PLUGIN_CONFIG_SUFFIX="config"
 if [[ -n $DOKKU_API_VERSION ]]; then
@@ -33,4 +33,4 @@ export PLUGIN_AMBASSADOR_IMAGE=${PLUGIN_AMBASSADOR_IMAGE:=dokku/ambassador:0.8.2
 export PLUGIN_S3BACKUP_IMAGE=${PLUGIN_S3BACKUP_IMAGE:=dokku/s3backup:0.18.0}
 export PLUGIN_WAIT_IMAGE=${PLUGIN_WAIT_IMAGE:=dokku/wait:0.9.3}
 
-export MYSQL_CONFIG_OPTIONS=${MYSQL_CONFIG_OPTIONS:=""}
+export DOLT_CONFIG_OPTIONS=${DOLT_CONFIG_OPTIONS:=""}
