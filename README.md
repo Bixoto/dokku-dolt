@@ -1,6 +1,6 @@
 # dokku dolt [![Build Status](https://img.shields.io/github/actions/workflow/status/bixoto/dokku-dolt/ci.yml?branch=master&style=flat-square "Build Status")](https://github.com/bixoto/dokku-dolt/actions/workflows/ci.yml?query=branch%3Amaster)
 
-Unofficial dolt plugin for dokku. Currently defaults to installing [dolthub/dolt-sql-server 1.55.2](https://hub.docker.com/r/dolthub/dolt-sql-server/).
+Unofficial dolt plugin for dokku forked from the [mysql plugin](https://github.com/dokku/dokku-mysql). Currently defaults to installing [dolthub/dolt-sql-server 1.55.2](https://hub.docker.com/r/dolthub/dolt-sql-server/).
 
 **WORK IN PROGRESS -- NOT READY FOR PRODUCTION**
 
