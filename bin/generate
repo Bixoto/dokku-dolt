@@ -61,8 +61,7 @@ def header(service):
     return " ".join(
         [
             f"# dokku {service}",
-            f'[![Build Status](https://img.shields.io/github/actions/workflow/status/dokku/dokku-{service}/ci.yml?branch=master&style=flat-square "Build Status")](https://github.com/dokku/dokku-{service}/actions/workflows/ci.yml?query=branch%3Amaster)',
-            f'[![IRC Network](https://img.shields.io/badge/irc-libera-blue.svg?style=flat-square "IRC Libera")](https://webchat.libera.chat/?channels=dokku)',
+            f'[![Build Status](https://img.shields.io/github/actions/workflow/status/bixoto/dokku-{service}/ci.yml?branch=master&style=flat-square "Build Status")](https://github.com/bixoto/dokku-{service}/actions/workflows/ci.yml?query=branch%3Amaster)',
         ]
     )
 
@@ -110,7 +109,7 @@ def installation_section(service, dokku_version):
             "",
             "```shell",
             f"# on {dokku_version}",
-            f"sudo dokku plugin:install https://github.com/dokku/dokku-{service}.git --name {service}",
+            f"sudo dokku plugin:install https://github.com/bixoto/dokku-{service}.git --name {service}",
             "```",
         ]
     )
