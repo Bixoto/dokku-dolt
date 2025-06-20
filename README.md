@@ -2,6 +2,8 @@
 
 Unofficial dolt plugin for dokku. Currently defaults to installing [dolthub/dolt-sql-server 1.55.2](https://hub.docker.com/r/dolthub/dolt-sql-server/).
 
+**WORK IN PROGRESS -- NOT READY FOR PRODUCTION**
+
 ## Requirements
 
 - dokku 0.19.x+

@@ -23,6 +23,7 @@ def compile(
         [
             header(service),
             description(service, image, version),
+          "**WORK IN PROGRESS -- NOT READY FOR PRODUCTION**"
         ]
     )
 
