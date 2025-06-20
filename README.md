@@ -31,6 +31,7 @@ dolt:backup-unschedule <service>                   # unschedule the backup of th
 dolt:backup-unset-encryption <service>             # unset encryption for future backups of the dolt service
 dolt:backup-unset-public-key-encryption <service>  # unset GPG Public Key encryption for future backups of the dolt service
 dolt:clone <service> <new-service> [--clone-flags...] # create container <new-name> then copy data from <name> into <new-name>
+dolt:connect <service>                             # connect to the service via the dolt connection tool
 dolt:create <service> [--create-flags...]          # create a dolt service
 dolt:destroy <service> [-f|--force]                # delete the dolt service/data/container if there are no links left
 dolt:enter <service>                               # enter or run a command in a running dolt service container
@@ -296,6 +297,21 @@ dokku dolt:set lollipop post-create-network
 ### Service Lifecycle
 
 The lifecycle of each service can be managed through the following commands:
+
+### connect to the service via the dolt connection tool
+
+```shell
+# usage
+dokku dolt:connect <service>
+```
+
+Connect to the service via the dolt connection tool:
+
+> NOTE: disconnecting from ssh while running this command may leave zombie processes due to moby/moby#9098
+
+```shell
+dokku dolt:connect lollipop
+```
 
 ### enter or run a command in a running dolt service container
 
