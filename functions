@@ -19,7 +19,8 @@ service_connect() {
   local SERVICE_TTY_OPTS
   has_tty && SERVICE_TTY_OPTS="-t"
 
-  "$DOCKER_BIN" container exec --env=LANG=C.UTF-8 --env=LC_ALL=C.UTF-8 -i $SERVICE_TTY_OPTS "$SERVICE_NAME" mysql --user=mysql --password="$PASSWORD" --database="$DATABASE_NAME"
+dokku_log_fail "not implemented"
+  # TODO: "$DOCKER_BIN" container exec --env=LANG=C.UTF-8 --env=LC_ALL=C.UTF-8 -i $SERVICE_TTY_OPTS "$SERVICE_NAME" mysql --user=mysql --password="$PASSWORD" --database="$DATABASE_NAME"
 }
 
 service_create() {
@@ -48,6 +49,7 @@ service_create() {
   mkdir -p "$SERVICE_ROOT/$PLUGIN_CONFIG_SUFFIX" || dokku_log_fail "Unable to create service config directory"
   touch "$LINKS_FILE"
 
+  # TODO: check if pertinent for dolt
   echo -e "[mysqld]\nperformance_schema = 0" >"$SERVICE_ROOT/$PLUGIN_CONFIG_SUFFIX/disable_performance_schema.cnf"
   echo -e "[mysqld]\ncharacter-set-server = utf8\ncollation-server = utf8_general_ci" >"$SERVICE_ROOT/$PLUGIN_CONFIG_SUFFIX/charset_utf8.cnf"
   ROOTPASSWORD=$(openssl rand -hex 8)
@@ -89,6 +91,7 @@ service_create_container() {
 
   rm -f "$SERVICE_ROOT/ID"
   declare -a DOCKER_ARGS
+  # TODO: check for Dolt
   DOCKER_ARGS=()
   DOCKER_ARGS+=("--cidfile=$SERVICE_ROOT/ID")
   DOCKER_ARGS+=("--env-file=$SERVICE_ROOT/ENV")
@@ -171,7 +174,8 @@ service_export() {
   local ROOTPASSWORD="$(service_root_password "$SERVICE")"
 
   [[ -n $SSH_TTY ]] && stty -opost
-  "$DOCKER_BIN" container exec "$SERVICE_NAME" mysqldump --default-character-set=utf8mb4 --user=root --password="$ROOTPASSWORD" --single-transaction --no-tablespaces --quick "$DATABASE_NAME"
+  dokku_log_fail "not implemented"
+  # TODO: "$DOCKER_BIN" container exec "$SERVICE_NAME" mysqldump --default-character-set=utf8mb4 --user=root --password="$ROOTPASSWORD" --single-transaction --no-tablespaces --quick "$DATABASE_NAME"
   status=$?
   [[ -n $SSH_TTY ]] && stty opost
   exit $status
@@ -188,7 +192,8 @@ service_import() {
   if [[ -t 0 ]]; then
     dokku_log_fail "No data provided on stdin."
   fi
-  "$DOCKER_BIN" container exec -i "$SERVICE_NAME" mysql --user=root --password="$ROOTPASSWORD" "$DATABASE_NAME"
+  dokku_log_fail "not implemented"
+  # TODO: "$DOCKER_BIN" container exec -i "$SERVICE_NAME" mysql --user=root --password="$ROOTPASSWORD" "$DATABASE_NAME"
 }
 
 service_start() {
@@ -233,5 +238,5 @@ service_url() {
   local SERVICE_DNS_HOSTNAME="$(service_dns_hostname "$SERVICE")"
   local DATABASE_NAME="$(get_database_name "$SERVICE")"
   local PASSWORD="$(service_password "$SERVICE")"
-  echo "$PLUGIN_SCHEME://mysql:$PASSWORD@$SERVICE_DNS_HOSTNAME:${PLUGIN_DATASTORE_PORTS[0]}/$DATABASE_NAME"
+  echo "$PLUGIN_SCHEME://dolt:$PASSWORD@$SERVICE_DNS_HOSTNAME:${PLUGIN_DATASTORE_PORTS[0]}/$DATABASE_NAME"
 }

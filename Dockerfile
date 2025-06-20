@@ -1,1 +1,1 @@
-FROM mysql:9.3.0
+FROM dolthub/dolt-sql-server:1.55.2
