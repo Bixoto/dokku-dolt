@@ -1,6 +1,6 @@
 # dokku dolt [![Build Status](https://img.shields.io/github/actions/workflow/status/bixoto/dokku-dolt/ci.yml?branch=master&style=flat-square "Build Status")](https://github.com/bixoto/dokku-dolt/actions/workflows/ci.yml?query=branch%3Amaster)
 
-Unofficial dolt plugin for dokku, forked from the [mysql plugin](https://github.com/dokku/dokku-mysql). Currently defaults to installing [dolt 1.55.2](https://hub.docker.com/r/dolthub/dolt-sql-server).
+Official dolt plugin for dokku. Currently defaults to installing [dolthub/dolt-sql-server 1.55.2](https://hub.docker.com/r/dolthub/dolt-sql-server/).
 
 ## Requirements
 
@@ -14,61 +14,56 @@ Unofficial dolt plugin for dokku, forked from the [mysql plugin](https://github.
 sudo dokku plugin:install https://github.com/bixoto/dokku-dolt.git --name dolt
 ```
 
------------------------
-Original README below:
-
-
 ## Commands
 
 ```
-dolt:app-links <app>                              # list all mysql service links for a given app
-dolt:backup <service> <bucket-name> [--use-iam]   # create a backup of the mysql service to an existing s3 bucket
-dolt:backup-auth <service> <aws-access-key-id> <aws-secret-access-key> <aws-default-region> <aws-signature-version> <endpoint-url> # set up authentication for backups on the mysql service
-dolt:backup-deauth <service>                      # remove backup authentication for the mysql service
-dolt:backup-schedule <service> <schedule> <bucket-name> [--use-iam] # schedule a backup of the mysql service
-dolt:backup-schedule-cat <service>                # cat the contents of the configured backup cronfile for the service
-dolt:backup-set-encryption <service> <passphrase> # set encryption for all future backups of mysql service
-dolt:backup-set-public-key-encryption <service> <public-key-id> # set GPG Public Key encryption for all future backups of mysql service
-dolt:backup-unschedule <service>                  # unschedule the backup of the mysql service
-dolt:backup-unset-encryption <service>            # unset encryption for future backups of the mysql service
-dolt:backup-unset-public-key-encryption <service> # unset GPG Public Key encryption for future backups of the mysql service
+dolt:app-links <app>                               # list all dolt service links for a given app
+dolt:backup <service> <bucket-name> [--use-iam]    # create a backup of the dolt service to an existing s3 bucket
+dolt:backup-auth <service> <aws-access-key-id> <aws-secret-access-key> <aws-default-region> <aws-signature-version> <endpoint-url> # set up authentication for backups on the dolt service
+dolt:backup-deauth <service>                       # remove backup authentication for the dolt service
+dolt:backup-schedule <service> <schedule> <bucket-name> [--use-iam] # schedule a backup of the dolt service
+dolt:backup-schedule-cat <service>                 # cat the contents of the configured backup cronfile for the service
+dolt:backup-set-encryption <service> <passphrase>  # set encryption for all future backups of dolt service
+dolt:backup-set-public-key-encryption <service> <public-key-id> # set GPG Public Key encryption for all future backups of dolt service
+dolt:backup-unschedule <service>                   # unschedule the backup of the dolt service
+dolt:backup-unset-encryption <service>             # unset encryption for future backups of the dolt service
+dolt:backup-unset-public-key-encryption <service>  # unset GPG Public Key encryption for future backups of the dolt service
 dolt:clone <service> <new-service> [--clone-flags...] # create container <new-name> then copy data from <name> into <new-name>
-dolt:connect <service>                            # connect to the service via the mysql connection tool
-dolt:create <service> [--create-flags...]         # create a mysql service
-dolt:destroy <service> [-f|--force]               # delete the mysql service/data/container if there are no links left
-dolt:enter <service>                              # enter or run a command in a running mysql service container
-dolt:exists <service>                             # check if the mysql service exists
-dolt:export <service>                             # export a dump of the mysql service database
-dolt:expose <service> <ports...>                  # expose a mysql service on custom host:port if provided (random port on the 0.0.0.0 interface if otherwise unspecified)
-dolt:import <service>                             # import a dump into the mysql service database
-dolt:info <service> [--single-info-flag]          # print the service information
-dolt:link <service> <app> [--link-flags...]       # link the mysql service to the app
-dolt:linked <service> <app>                       # check if the mysql service is linked to an app
-dolt:links <service>                              # list all apps linked to the mysql service
-dolt:list                                         # list all mysql services
+dolt:create <service> [--create-flags...]          # create a dolt service
+dolt:destroy <service> [-f|--force]                # delete the dolt service/data/container if there are no links left
+dolt:enter <service>                               # enter or run a command in a running dolt service container
+dolt:exists <service>                              # check if the dolt service exists
+dolt:export <service>                              # export a dump of the dolt service database
+dolt:expose <service> <ports...>                   # expose a dolt service on custom host:port if provided (random port on the 0.0.0.0 interface if otherwise unspecified)
+dolt:import <service>                              # import a dump into the dolt service database
+dolt:info <service> [--single-info-flag]           # print the service information
+dolt:link <service> <app> [--link-flags...]        # link the dolt service to the app
+dolt:linked <service> <app>                        # check if the dolt service is linked to an app
+dolt:links <service>                               # list all apps linked to the dolt service
+dolt:list                                          # list all dolt services
 dolt:logs <service> [-t|--tail] <tail-num-optional> # print the most recent log(s) for this service
-dolt:pause <service>                              # pause a running mysql service
-dolt:promote <service> <app>                      # promote service <service> as DATABASE_URL in <app>
-dolt:restart <service>                            # graceful shutdown and restart of the mysql service container
-dolt:set <service> <key> <value>                  # set or clear a property for a service
-dolt:start <service>                              # start a previously stopped mysql service
-dolt:stop <service>                               # stop a running mysql service
-dolt:unexpose <service>                           # unexpose a previously exposed mysql service
-dolt:unlink <service> <app>                       # unlink the mysql service from the app
-dolt:upgrade <service> [--upgrade-flags...]       # upgrade service <service> to the specified versions
+dolt:pause <service>                               # pause a running dolt service
+dolt:promote <service> <app>                       # promote service <service> as DATABASE_URL in <app>
+dolt:restart <service>                             # graceful shutdown and restart of the dolt service container
+dolt:set <service> <key> <value>                   # set or clear a property for a service
+dolt:start <service>                               # start a previously stopped dolt service
+dolt:stop <service>                                # stop a running dolt service
+dolt:unexpose <service>                            # unexpose a previously exposed dolt service
+dolt:unlink <service> <app>                        # unlink the dolt service from the app
+dolt:upgrade <service> [--upgrade-flags...]        # upgrade service <service> to the specified versions
 ```
 
 ## Usage
 
-Help for any commands can be displayed by specifying the command as an argument to dolt:help. Plugin help output in conjunction with any files in the `docs/` folder is used to generate the plugin documentation. Please consult the `mysql:help` command for any undocumented commands.
+Help for any commands can be displayed by specifying the command as an argument to dolt:help. Plugin help output in conjunction with any files in the `docs/` folder is used to generate the plugin documentation. Please consult the `dolt:help` command for any undocumented commands.
 
 ### Basic Usage
 
-### create a mysql service
+### create a dolt service
 
 ```shell
 # usage
-dokku mysql:create <service> [--create-flags...]
+dokku dolt:create <service> [--create-flags...]
 ```
 
 flags:
@@ -83,34 +78,34 @@ flags:
 - `-P|--post-create-network NETWORKS`: a comma-separated list of networks to attach the service container to after service creation
 - `-r|--root-password PASSWORD`: override the root-level service password
 - `-S|--post-start-network NETWORKS`: a comma-separated list of networks to attach the service container to after service start
-- `-s|--shm-size SHM_SIZE`: override shared memory size for mysql docker container
+- `-s|--shm-size SHM_SIZE`: override shared memory size for dolt docker container
 
-Create a mysql service named lollipop:
+Create a dolt service named lollipop:
 
 ```shell
-dokku mysql:create lollipop
+dokku dolt:create lollipop
 ```
 
-You can also specify the image and image version to use for the service. It *must* be compatible with the mysql image.
+You can also specify the image and image version to use for the service. It *must* be compatible with the dolthub/dolt-sql-server image.
 
 ```shell
-export MYSQL_IMAGE="mysql"
-export MYSQL_IMAGE_VERSION="${PLUGIN_IMAGE_VERSION}"
-dokku mysql:create lollipop
+export DOLT_IMAGE="dolthub/dolt-sql-server"
+export DOLT_IMAGE_VERSION="${PLUGIN_IMAGE_VERSION}"
+dokku dolt:create lollipop
 ```
 
-You can also specify custom environment variables to start the mysql service in semicolon-separated form.
+You can also specify custom environment variables to start the dolt service in semicolon-separated form.
 
 ```shell
-export MYSQL_CUSTOM_ENV="USER=alpha;HOST=beta"
-dokku mysql:create lollipop
+export DOLT_CUSTOM_ENV="USER=alpha;HOST=beta"
+dokku dolt:create lollipop
 ```
 
 ### print the service information
 
 ```shell
 # usage
-dokku mysql:info <service> [--single-info-flag]
+dokku dolt:info <service> [--single-info-flag]
 ```
 
 flags:
@@ -132,45 +127,45 @@ flags:
 Get connection information as follows:
 
 ```shell
-dokku mysql:info lollipop
+dokku dolt:info lollipop
 ```
 
 You can also retrieve a specific piece of service info via flags:
 
 ```shell
-dokku mysql:info lollipop --config-dir
-dokku mysql:info lollipop --data-dir
-dokku mysql:info lollipop --dsn
-dokku mysql:info lollipop --exposed-ports
-dokku mysql:info lollipop --id
-dokku mysql:info lollipop --internal-ip
-dokku mysql:info lollipop --initial-network
-dokku mysql:info lollipop --links
-dokku mysql:info lollipop --post-create-network
-dokku mysql:info lollipop --post-start-network
-dokku mysql:info lollipop --service-root
-dokku mysql:info lollipop --status
-dokku mysql:info lollipop --version
+dokku dolt:info lollipop --config-dir
+dokku dolt:info lollipop --data-dir
+dokku dolt:info lollipop --dsn
+dokku dolt:info lollipop --exposed-ports
+dokku dolt:info lollipop --id
+dokku dolt:info lollipop --internal-ip
+dokku dolt:info lollipop --initial-network
+dokku dolt:info lollipop --links
+dokku dolt:info lollipop --post-create-network
+dokku dolt:info lollipop --post-start-network
+dokku dolt:info lollipop --service-root
+dokku dolt:info lollipop --status
+dokku dolt:info lollipop --version
 ```
 
-### list all mysql services
+### list all dolt services
 
 ```shell
 # usage
-dokku mysql:list
+dokku dolt:list
 ```
 
 List all services:
 
 ```shell
-dokku mysql:list
+dokku dolt:list
 ```
 
 ### print the most recent log(s) for this service
 
 ```shell
 # usage
-dokku mysql:logs <service> [-t|--tail] <tail-num-optional>
+dokku dolt:logs <service> [-t|--tail] <tail-num-optional>
 ```
 
 flags:
@@ -180,26 +175,26 @@ flags:
 You can tail logs for a particular service:
 
 ```shell
-dokku mysql:logs lollipop
+dokku dolt:logs lollipop
 ```
 
 By default, logs will not be tailed, but you can do this with the --tail flag:
 
 ```shell
-dokku mysql:logs lollipop --tail
+dokku dolt:logs lollipop --tail
 ```
 
 The default tail setting is to show all logs, but an initial count can also be specified:
 
 ```shell
-dokku mysql:logs lollipop --tail 5
+dokku dolt:logs lollipop --tail 5
 ```
 
-### link the mysql service to the app
+### link the dolt service to the app
 
 ```shell
 # usage
-dokku mysql:link <service> <app> [--link-flags...]
+dokku dolt:link <service> <app> [--link-flags...]
 ```
 
 flags:
@@ -208,118 +203,103 @@ flags:
 - `-q|--querystring "pool=5"`: ampersand delimited querystring arguments to append to the service link
 - `-n|--no-restart "false"`: whether or not to restart the app on link (default: true)
 
-A mysql service can be linked to a container. This will use native docker links via the docker-options plugin. Here we link it to our `playground` app.
+A dolt service can be linked to a container. This will use native docker links via the docker-options plugin. Here we link it to our `playground` app.
 
 > NOTE: this will restart your app
 
 ```shell
-dokku mysql:link lollipop playground
+dokku dolt:link lollipop playground
 ```
 
 The following environment variables will be set automatically by docker (not on the app itself, so they won’t be listed when calling dokku config):
 
 ```
-DOKKU_MYSQL_LOLLIPOP_NAME=/lollipop/DATABASE
-DOKKU_MYSQL_LOLLIPOP_PORT=tcp://172.17.0.1:3306
-DOKKU_MYSQL_LOLLIPOP_PORT_3306_TCP=tcp://172.17.0.1:3306
-DOKKU_MYSQL_LOLLIPOP_PORT_3306_TCP_PROTO=tcp
-DOKKU_MYSQL_LOLLIPOP_PORT_3306_TCP_PORT=3306
-DOKKU_MYSQL_LOLLIPOP_PORT_3306_TCP_ADDR=172.17.0.1
+DOKKU_DOLT_LOLLIPOP_NAME=/lollipop/DATABASE
+DOKKU_DOLT_LOLLIPOP_PORT=tcp://172.17.0.1:3306
+DOKKU_DOLT_LOLLIPOP_PORT_3306_TCP=tcp://172.17.0.1:3306
+DOKKU_DOLT_LOLLIPOP_PORT_3306_TCP_PROTO=tcp
+DOKKU_DOLT_LOLLIPOP_PORT_3306_TCP_PORT=3306
+DOKKU_DOLT_LOLLIPOP_PORT_3306_TCP_ADDR=172.17.0.1
 ```
 
 The following will be set on the linked application by default:
 
 ```
-DATABASE_URL=mysql://mysql:SOME_PASSWORD@dokku-mysql-lollipop:3306/lollipop
+DATABASE_URL=mysql://mysql:SOME_PASSWORD@dokku-dolt-lollipop:3306/lollipop
 ```
 
 The host exposed here only works internally in docker containers. If you want your container to be reachable from outside, you should use the `expose` subcommand. Another service can be linked to your app:
 
 ```shell
-dokku mysql:link other_service playground
+dokku dolt:link other_service playground
 ```
 
-It is possible to change the protocol for `DATABASE_URL` by setting the environment variable `MYSQL_DATABASE_SCHEME` on the app. Doing so will after linking will cause the plugin to think the service is not linked, and we advise you to unlink before proceeding.
+It is possible to change the protocol for `DATABASE_URL` by setting the environment variable `DOLT_DATABASE_SCHEME` on the app. Doing so will after linking will cause the plugin to think the service is not linked, and we advise you to unlink before proceeding.
 
 ```shell
-dokku config:set playground MYSQL_DATABASE_SCHEME=mysql2
-dokku mysql:link lollipop playground
+dokku config:set playground DOLT_DATABASE_SCHEME=mysql2
+dokku dolt:link lollipop playground
 ```
 
 This will cause `DATABASE_URL` to be set as:
 
 ```
-mysql2://mysql:SOME_PASSWORD@dokku-mysql-lollipop:3306/lollipop
+mysql2://mysql:SOME_PASSWORD@dokku-dolt-lollipop:3306/lollipop
 ```
 
-### unlink the mysql service from the app
+### unlink the dolt service from the app
 
 ```shell
 # usage
-dokku mysql:unlink <service> <app>
+dokku dolt:unlink <service> <app>
 ```
 
 flags:
 
 - `-n|--no-restart "false"`: whether or not to restart the app on unlink (default: true)
 
-You can unlink a mysql service:
+You can unlink a dolt service:
 
 > NOTE: this will restart your app and unset related environment variables
 
 ```shell
-dokku mysql:unlink lollipop playground
+dokku dolt:unlink lollipop playground
 ```
 
 ### set or clear a property for a service
 
 ```shell
 # usage
-dokku mysql:set <service> <key> <value>
+dokku dolt:set <service> <key> <value>
 ```
 
 Set the network to attach after the service container is started:
 
 ```shell
-dokku mysql:set lollipop post-create-network custom-network
+dokku dolt:set lollipop post-create-network custom-network
 ```
 
 Set multiple networks:
 
 ```shell
-dokku mysql:set lollipop post-create-network custom-network,other-network
+dokku dolt:set lollipop post-create-network custom-network,other-network
 ```
 
 Unset the post-create-network value:
 
 ```shell
-dokku mysql:set lollipop post-create-network
+dokku dolt:set lollipop post-create-network
 ```
 
 ### Service Lifecycle
 
 The lifecycle of each service can be managed through the following commands:
 
-### connect to the service via the mysql connection tool
+### enter or run a command in a running dolt service container
 
 ```shell
 # usage
-dokku mysql:connect <service>
-```
-
-Connect to the service via the mysql connection tool:
-
-> NOTE: disconnecting from ssh while running this command may leave zombie processes due to moby/moby#9098
-
-```shell
-dokku mysql:connect lollipop
-```
-
-### enter or run a command in a running mysql service container
-
-```shell
-# usage
-dokku mysql:enter <service>
+dokku dolt:enter <service>
 ```
 
 A bash prompt can be opened against a running service. Filesystem changes will not be saved to disk.
@@ -327,58 +307,58 @@ A bash prompt can be opened against a running service. Filesystem changes will n
 > NOTE: disconnecting from ssh while running this command may leave zombie processes due to moby/moby#9098
 
 ```shell
-dokku mysql:enter lollipop
+dokku dolt:enter lollipop
 ```
 
 You may also run a command directly against the service. Filesystem changes will not be saved to disk.
 
 ```shell
-dokku mysql:enter lollipop touch /tmp/test
+dokku dolt:enter lollipop touch /tmp/test
 ```
 
-### expose a mysql service on custom host:port if provided (random port on the 0.0.0.0 interface if otherwise unspecified)
+### expose a dolt service on custom host:port if provided (random port on the 0.0.0.0 interface if otherwise unspecified)
 
 ```shell
 # usage
-dokku mysql:expose <service> <ports...>
+dokku dolt:expose <service> <ports...>
 ```
 
 Expose the service on the service's normal ports, allowing access to it from the public interface (`0.0.0.0`):
 
 ```shell
-dokku mysql:expose lollipop 3306
+dokku dolt:expose lollipop 3306
 ```
 
 Expose the service on the service's normal ports, with the first on a specified ip address (127.0.0.1):
 
 ```shell
-dokku mysql:expose lollipop 127.0.0.1:3306
+dokku dolt:expose lollipop 127.0.0.1:3306
 ```
 
-### unexpose a previously exposed mysql service
+### unexpose a previously exposed dolt service
 
 ```shell
 # usage
-dokku mysql:unexpose <service>
+dokku dolt:unexpose <service>
 ```
 
 Unexpose the service, removing access to it from the public interface (`0.0.0.0`):
 
 ```shell
-dokku mysql:unexpose lollipop
+dokku dolt:unexpose lollipop
 ```
 
 ### promote service <service> as DATABASE_URL in <app>
 
 ```shell
 # usage
-dokku mysql:promote <service> <app>
+dokku dolt:promote <service> <app>
 ```
 
-If you have a mysql service linked to an app and try to link another mysql service another link environment variable will be generated automatically:
+If you have a dolt service linked to an app and try to link another dolt service another link environment variable will be generated automatically:
 
 ```
-DOKKU_DATABASE_BLUE_URL=mysql://other_service:ANOTHER_PASSWORD@dokku-mysql-other-service:3306/other_service
+DOKKU_DATABASE_BLUE_URL=mysql://other_service:ANOTHER_PASSWORD@dokku-dolt-other-service:3306/other_service
 ```
 
 You can promote the new service to be the primary one:
@@ -386,74 +366,74 @@ You can promote the new service to be the primary one:
 > NOTE: this will restart your app
 
 ```shell
-dokku mysql:promote other_service playground
+dokku dolt:promote other_service playground
 ```
 
 This will replace `DATABASE_URL` with the url from other_service and generate another environment variable to hold the previous value if necessary. You could end up with the following for example:
 
 ```
-DATABASE_URL=mysql://other_service:ANOTHER_PASSWORD@dokku-mysql-other-service:3306/other_service
-DOKKU_DATABASE_BLUE_URL=mysql://other_service:ANOTHER_PASSWORD@dokku-mysql-other-service:3306/other_service
-DOKKU_DATABASE_SILVER_URL=mysql://lollipop:SOME_PASSWORD@dokku-mysql-lollipop:3306/lollipop
+DATABASE_URL=mysql://other_service:ANOTHER_PASSWORD@dokku-dolt-other-service:3306/other_service
+DOKKU_DATABASE_BLUE_URL=mysql://other_service:ANOTHER_PASSWORD@dokku-dolt-other-service:3306/other_service
+DOKKU_DATABASE_SILVER_URL=mysql://lollipop:SOME_PASSWORD@dokku-dolt-lollipop:3306/lollipop
 ```
 
-### start a previously stopped mysql service
+### start a previously stopped dolt service
 
 ```shell
 # usage
-dokku mysql:start <service>
+dokku dolt:start <service>
 ```
 
 Start the service:
 
 ```shell
-dokku mysql:start lollipop
+dokku dolt:start lollipop
 ```
 
-### stop a running mysql service
+### stop a running dolt service
 
 ```shell
 # usage
-dokku mysql:stop <service>
+dokku dolt:stop <service>
 ```
 
 Stop the service and removes the running container:
 
 ```shell
-dokku mysql:stop lollipop
+dokku dolt:stop lollipop
 ```
 
-### pause a running mysql service
+### pause a running dolt service
 
 ```shell
 # usage
-dokku mysql:pause <service>
+dokku dolt:pause <service>
 ```
 
 Pause the running container for the service:
 
 ```shell
-dokku mysql:pause lollipop
+dokku dolt:pause lollipop
 ```
 
-### graceful shutdown and restart of the mysql service container
+### graceful shutdown and restart of the dolt service container
 
 ```shell
 # usage
-dokku mysql:restart <service>
+dokku dolt:restart <service>
 ```
 
 Restart the service:
 
 ```shell
-dokku mysql:restart lollipop
+dokku dolt:restart lollipop
 ```
 
 ### upgrade service <service> to the specified versions
 
 ```shell
 # usage
-dokku mysql:upgrade <service> [--upgrade-flags...]
+dokku dolt:upgrade <service> [--upgrade-flags...]
 ```
 
 flags:
@@ -466,36 +446,36 @@ flags:
 - `-P|--post-create-network NETWORKS`: a comma-separated list of networks to attach the service container to after service creation
 - `-R|--restart-apps "true"`: whether or not to force an app restart (default: false)
 - `-S|--post-start-network NETWORKS`: a comma-separated list of networks to attach the service container to after service start
-- `-s|--shm-size SHM_SIZE`: override shared memory size for mysql docker container
+- `-s|--shm-size SHM_SIZE`: override shared memory size for dolt docker container
 
 You can upgrade an existing service to a new image or image-version:
 
 ```shell
-dokku mysql:upgrade lollipop
+dokku dolt:upgrade lollipop
 ```
 
 ### Service Automation
 
 Service scripting can be executed using the following commands:
 
-### list all mysql service links for a given app
+### list all dolt service links for a given app
 
 ```shell
 # usage
-dokku mysql:app-links <app>
+dokku dolt:app-links <app>
 ```
 
-List all mysql services that are linked to the `playground` app.
+List all dolt services that are linked to the `playground` app.
 
 ```shell
-dokku mysql:app-links playground
+dokku dolt:app-links playground
 ```
 
 ### create container <new-name> then copy data from <name> into <new-name>
 
 ```shell
 # usage
-dokku mysql:clone <service> <new-service> [--clone-flags...]
+dokku dolt:clone <service> <new-service> [--clone-flags...]
 ```
 
 flags:
@@ -510,87 +490,87 @@ flags:
 - `-P|--post-create-network NETWORKS`: a comma-separated list of networks to attach the service container to after service creation
 - `-r|--root-password PASSWORD`: override the root-level service password
 - `-S|--post-start-network NETWORKS`: a comma-separated list of networks to attach the service container to after service start
-- `-s|--shm-size SHM_SIZE`: override shared memory size for mysql docker container
+- `-s|--shm-size SHM_SIZE`: override shared memory size for dolt docker container
 
 You can clone an existing service to a new one:
 
 ```shell
-dokku mysql:clone lollipop lollipop-2
+dokku dolt:clone lollipop lollipop-2
 ```
 
-### check if the mysql service exists
+### check if the dolt service exists
 
 ```shell
 # usage
-dokku mysql:exists <service>
+dokku dolt:exists <service>
 ```
 
-Here we check if the lollipop mysql service exists.
+Here we check if the lollipop dolt service exists.
 
 ```shell
-dokku mysql:exists lollipop
+dokku dolt:exists lollipop
 ```
 
-### check if the mysql service is linked to an app
-
-```shell
-# usage
-dokku mysql:linked <service> <app>
-```
-
-Here we check if the lollipop mysql service is linked to the `playground` app.
-
-```shell
-dokku mysql:linked lollipop playground
-```
-
-### list all apps linked to the mysql service
+### check if the dolt service is linked to an app
 
 ```shell
 # usage
-dokku mysql:links <service>
+dokku dolt:linked <service> <app>
 ```
 
-List all apps linked to the `lollipop` mysql service.
+Here we check if the lollipop dolt service is linked to the `playground` app.
 
 ```shell
-dokku mysql:links lollipop
+dokku dolt:linked lollipop playground
+```
+
+### list all apps linked to the dolt service
+
+```shell
+# usage
+dokku dolt:links <service>
+```
+
+List all apps linked to the `lollipop` dolt service.
+
+```shell
+dokku dolt:links lollipop
 ```
 
 ### Data Management
 
 The underlying service data can be imported and exported with the following commands:
 
-### import a dump into the mysql service database
+### import a dump into the dolt service database
 
 ```shell
 # usage
-dokku mysql:import <service>
+dokku dolt:import <service>
 ```
 
 Import a datastore dump:
 
 ```shell
-dokku mysql:import lollipop < data.dump
+dokku dolt:import lollipop < data.dump
 ```
 
-### export a dump of the mysql service database
+### export a dump of the dolt service database
 
 ```shell
 # usage
-dokku mysql:export <service>
+dokku dolt:export <service>
 ```
 
 By default, datastore output is exported to stdout:
 
 ```shell
-dokku mysql:export lollipop
+dokku dolt:export lollipop
 ```
 
 You can redirect this output to a file:
 
 ```shell
-dokku mysql:export lollipop > data.dump
+dokku dolt:export lollipop > data.dump
 ```
 
 ### Backups
@@ -601,55 +581,55 @@ You may skip the `backup-auth` step if your dokku install is running within EC2 
 
 Backups can be performed using the backup commands:
 
-### set up authentication for backups on the mysql service
+### set up authentication for backups on the dolt service
 
 ```shell
 # usage
-dokku mysql:backup-auth <service> <aws-access-key-id> <aws-secret-access-key> <aws-default-region> <aws-signature-version> <endpoint-url>
+dokku dolt:backup-auth <service> <aws-access-key-id> <aws-secret-access-key> <aws-default-region> <aws-signature-version> <endpoint-url>
 ```
 
 Setup s3 backup authentication:
 
 ```shell
-dokku mysql:backup-auth lollipop AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+dokku dolt:backup-auth lollipop AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 ```
 
 Setup s3 backup authentication with different region:
 
 ```shell
-dokku mysql:backup-auth lollipop AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION
+dokku dolt:backup-auth lollipop AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION
 ```
 
 Setup s3 backup authentication with different signature version and endpoint:
 
 ```shell
-dokku mysql:backup-auth lollipop AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION AWS_SIGNATURE_VERSION ENDPOINT_URL
+dokku dolt:backup-auth lollipop AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION AWS_SIGNATURE_VERSION ENDPOINT_URL
 ```
 
 More specific example for minio auth:
 
 ```shell
-dokku mysql:backup-auth lollipop MINIO_ACCESS_KEY_ID MINIO_SECRET_ACCESS_KEY us-east-1 s3v4 https://YOURMINIOSERVICE
+dokku dolt:backup-auth lollipop MINIO_ACCESS_KEY_ID MINIO_SECRET_ACCESS_KEY us-east-1 s3v4 https://YOURMINIOSERVICE
 ```
 
-### remove backup authentication for the mysql service
+### remove backup authentication for the dolt service
 
 ```shell
 # usage
-dokku mysql:backup-deauth <service>
+dokku dolt:backup-deauth <service>
 ```
 
 Remove s3 authentication:
 
 ```shell
-dokku mysql:backup-deauth lollipop
+dokku dolt:backup-deauth lollipop
 ```
 
-### create a backup of the mysql service to an existing s3 bucket
+### create a backup of the dolt service to an existing s3 bucket
 
 ```shell
 # usage
-dokku mysql:backup <service> <bucket-name> [--use-iam]
+dokku dolt:backup <service> <bucket-name> [--use-iam]
 ```
 
 flags:
@@ -659,72 +639,72 @@ flags:
 Backup the `lollipop` service to the `my-s3-bucket` bucket on `AWS`:`
 
 ```shell
-dokku mysql:backup lollipop my-s3-bucket --use-iam
+dokku dolt:backup lollipop my-s3-bucket --use-iam
 ```
 
 Restore a backup file (assuming it was extracted via `tar -xf backup.tgz`):
 
 ```shell
-dokku mysql:import lollipop < backup-folder/export
+dokku dolt:import lollipop < backup-folder/export
 ```
 
-### set encryption for all future backups of mysql service
+### set encryption for all future backups of dolt service
 
 ```shell
 # usage
-dokku mysql:backup-set-encryption <service> <passphrase>
+dokku dolt:backup-set-encryption <service> <passphrase>
 ```
 
 Set the GPG-compatible passphrase for encrypting backups for backups:
 
 ```shell
-dokku mysql:backup-set-encryption lollipop
+dokku dolt:backup-set-encryption lollipop
 ```
 
-### set GPG Public Key encryption for all future backups of mysql service
+### set GPG Public Key encryption for all future backups of dolt service
 
 ```shell
 # usage
-dokku mysql:backup-set-public-key-encryption <service> <public-key-id>
+dokku dolt:backup-set-public-key-encryption <service> <public-key-id>
 ```
 
 Set the `GPG` Public Key for encrypting backups:
 
 ```shell
-dokku mysql:backup-set-public-key-encryption lollipop
+dokku dolt:backup-set-public-key-encryption lollipop
 ```
 
-### unset encryption for future backups of the mysql service
+### unset encryption for future backups of the dolt service
 
 ```shell
 # usage
-dokku mysql:backup-unset-encryption <service>
+dokku dolt:backup-unset-encryption <service>
 ```
 
 Unset the `GPG` encryption passphrase for backups:
 
 ```shell
-dokku mysql:backup-unset-encryption lollipop
+dokku dolt:backup-unset-encryption lollipop
 ```
 
-### unset GPG Public Key encryption for future backups of the mysql service
+### unset GPG Public Key encryption for future backups of the dolt service
 
 ```shell
 # usage
-dokku mysql:backup-unset-public-key-encryption <service>
+dokku dolt:backup-unset-public-key-encryption <service>
 ```
 
 Unset the `GPG` Public Key encryption for backups:
 
 ```shell
-dokku mysql:backup-unset-public-key-encryption lollipop
+dokku dolt:backup-unset-public-key-encryption lollipop
 ```
 
-### schedule a backup of the mysql service
+### schedule a backup of the dolt service
 
 ```shell
 # usage
-dokku mysql:backup-schedule <service> <schedule> <bucket-name> [--use-iam]
+dokku dolt:backup-schedule <service> <schedule> <bucket-name> [--use-iam]
 ```
 
 flags:
@@ -736,43 +716,43 @@ Schedule a backup:
 > 'schedule' is a crontab expression, eg. "0 3 * * *" for each day at 3am
 
 ```shell
-dokku mysql:backup-schedule lollipop "0 3 * * *" my-s3-bucket
+dokku dolt:backup-schedule lollipop "0 3 * * *" my-s3-bucket
 ```
 
 Schedule a backup and authenticate via iam:
 
 ```shell
-dokku mysql:backup-schedule lollipop "0 3 * * *" my-s3-bucket --use-iam
+dokku dolt:backup-schedule lollipop "0 3 * * *" my-s3-bucket --use-iam
 ```
 
 ### cat the contents of the configured backup cronfile for the service
 
 ```shell
 # usage
-dokku mysql:backup-schedule-cat <service>
+dokku dolt:backup-schedule-cat <service>
 ```
 
 Cat the contents of the configured backup cronfile for the service:
 
 ```shell
-dokku mysql:backup-schedule-cat lollipop
+dokku dolt:backup-schedule-cat lollipop
 ```
 
-### unschedule the backup of the mysql service
+### unschedule the backup of the dolt service
 
 ```shell
 # usage
-dokku mysql:backup-unschedule <service>
+dokku dolt:backup-unschedule <service>
 ```
 
 Remove the scheduled backup from cron:
 
 ```shell
-dokku mysql:backup-unschedule lollipop
+dokku dolt:backup-unschedule lollipop
 ```
 
 ### Disabling `docker image pull` calls
 
-If you wish to disable the `docker image pull` calls that the plugin triggers, you may set the `MYSQL_DISABLE_PULL` environment variable to `true`. Once disabled, you will need to pull the service image you wish to deploy as shown in the `stderr` output.
+If you wish to disable the `docker image pull` calls that the plugin triggers, you may set the `DOLT_DISABLE_PULL` environment variable to `true`. Once disabled, you will need to pull the service image you wish to deploy as shown in the `stderr` output.
 
 Please ensure the proper images are in place when `docker image pull` is disabled.
