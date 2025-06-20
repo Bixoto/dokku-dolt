@@ -93,11 +93,12 @@ service_create_container() {
   DOCKER_ARGS=()
   DOCKER_ARGS+=("--cidfile=$SERVICE_ROOT/ID")
   DOCKER_ARGS+=("--env-file=$SERVICE_ROOT/ENV")
-  # TODO: check for Dolt
-  # DOCKER_ARGS+=("--env=MYSQL_DATABASE=$DATABASE_NAME")
+  # TODO: not supported by Dolt yet
+  #   https://github.com/dolthub/dolt/issues/9374
+  # DOCKER_ARGS+=("--env=MYSQL_USER=dolt")
   # DOCKER_ARGS+=("--env=MYSQL_PASSWORD=$PASSWORD")
-  DOCKER_ARGS+=("--env=MYSQL_USER=dolt")
   # /
+  DOCKER_ARGS+=("--env=DOLT_DATABASE=$DATABASE_NAME")
   DOCKER_ARGS+=("--env=DOLT_ROOT_PASSWORD=$ROOTPASSWORD")
   DOCKER_ARGS+=("--hostname=$SERVICE_NAME")
   DOCKER_ARGS+=("--label=dokku.service=$PLUGIN_COMMAND_PREFIX")
@@ -174,8 +175,7 @@ service_export() {
   local ROOTPASSWORD="$(service_root_password "$SERVICE")"
 
   [[ -n $SSH_TTY ]] && stty -opost
-  dokku_log_fail "not implemented"
-  # TODO: "$DOCKER_BIN" container exec "$SERVICE_NAME" mysqldump --default-character-set=utf8mb4 --user=root --password="$ROOTPASSWORD" --single-transaction --no-tablespaces --quick "$DATABASE_NAME"
+  "$DOCKER_BIN" container exec "$SERVICE_NAME" mysqldump --default-character-set=utf8mb4 --user=root --password="$ROOTPASSWORD" --single-transaction --no-tablespaces --quick "$DATABASE_NAME"
   status=$?
   [[ -n $SSH_TTY ]] && stty opost
   exit $status
@@ -192,8 +192,7 @@ service_import() {
   if [[ -t 0 ]]; then
     dokku_log_fail "No data provided on stdin."
   fi
-  dokku_log_fail "not implemented"
-  # TODO: "$DOCKER_BIN" container exec -i "$SERVICE_NAME" mysql --user=root --password="$ROOTPASSWORD" "$DATABASE_NAME"
+  "$DOCKER_BIN" container exec -i "$SERVICE_NAME" dot sql
 }
 
 service_start() {
