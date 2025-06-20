@@ -6,7 +6,8 @@ export DOLT_ROOT=${DOLT_ROOT:="$DOKKU_LIB_ROOT/services/dolt"}
 export DOKKU_LIB_HOST_ROOT=${DOKKU_LIB_HOST_ROOT:=$DOKKU_LIB_ROOT}
 export DOLT_HOST_ROOT=${DOLT_HOST_ROOT:="$DOKKU_LIB_HOST_ROOT/services/dolt"}
 
-export PLUGIN_UNIMPLEMENTED_SUBCOMMANDS=(app-links backup backup-auth backup-deauth backup-schedule backup-schedule-cat backup-set-encryption backup-set-public-key-encryption backup-unschedule backup-unset-encryption backup-unset-public-key-encryption clone connect create destroy enter exists export expose import info link linked links list logs pause promote restart set start stop unexpose unlink upgrade)
+# "connect" requires 'mysql' to be available in the container
+export PLUGIN_UNIMPLEMENTED_SUBCOMMANDS=(connect)
 export PLUGIN_COMMAND_PREFIX="dolt"
 export PLUGIN_CONFIG_ROOT=${PLUGIN_CONFIG_ROOT:="$DOKKU_LIB_ROOT/config/$PLUGIN_COMMAND_PREFIX"}
 export PLUGIN_DATA_ROOT=$DOLT_ROOT
