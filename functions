@@ -19,8 +19,7 @@ service_connect() {
   local SERVICE_TTY_OPTS
   has_tty && SERVICE_TTY_OPTS="-t"
 
-dokku_log_fail "not implemented"
-  # TODO: "$DOCKER_BIN" container exec --env=LANG=C.UTF-8 --env=LC_ALL=C.UTF-8 -i $SERVICE_TTY_OPTS "$SERVICE_NAME" mysql --user=mysql --password="$PASSWORD" --database="$DATABASE_NAME"
+  "$DOCKER_BIN" container exec --env=LANG=C.UTF-8 --env=LC_ALL=C.UTF-8 -i $SERVICE_TTY_OPTS "$SERVICE_NAME" dolt sql
 }
 
 service_create() {
@@ -91,21 +90,22 @@ service_create_container() {
 
   rm -f "$SERVICE_ROOT/ID"
   declare -a DOCKER_ARGS
-  # TODO: check for Dolt
   DOCKER_ARGS=()
   DOCKER_ARGS+=("--cidfile=$SERVICE_ROOT/ID")
   DOCKER_ARGS+=("--env-file=$SERVICE_ROOT/ENV")
-  DOCKER_ARGS+=("--env=MYSQL_DATABASE=$DATABASE_NAME")
-  DOCKER_ARGS+=("--env=MYSQL_PASSWORD=$PASSWORD")
-  DOCKER_ARGS+=("--env=MYSQL_ROOT_PASSWORD=$ROOTPASSWORD")
-  DOCKER_ARGS+=("--env=MYSQL_USER=mysql")
+  # TODO: check for Dolt
+  # DOCKER_ARGS+=("--env=MYSQL_DATABASE=$DATABASE_NAME")
+  # DOCKER_ARGS+=("--env=MYSQL_PASSWORD=$PASSWORD")
+  DOCKER_ARGS+=("--env=MYSQL_USER=dolt")
+  # /
+  DOCKER_ARGS+=("--env=DOLT_ROOT_PASSWORD=$ROOTPASSWORD")
   DOCKER_ARGS+=("--hostname=$SERVICE_NAME")
   DOCKER_ARGS+=("--label=dokku.service=$PLUGIN_COMMAND_PREFIX")
   DOCKER_ARGS+=("--label=dokku=service")
   DOCKER_ARGS+=("--name=$SERVICE_NAME")
   DOCKER_ARGS+=("--restart=always")
-  DOCKER_ARGS+=("--volume=$SERVICE_HOST_ROOT/$PLUGIN_CONFIG_SUFFIX:/etc/mysql/conf.d")
-  DOCKER_ARGS+=("--volume=$SERVICE_HOST_ROOT/data:/var/lib/mysql")
+  DOCKER_ARGS+=("--volume=$SERVICE_HOST_ROOT/$PLUGIN_CONFIG_SUFFIX:/etc/dolt/conf.d")
+  DOCKER_ARGS+=("--volume=$SERVICE_HOST_ROOT/data:/var/lib/dolt")
 
   declare -a LINK_CONTAINER_DOCKER_ARGS
   LINK_CONTAINER_DOCKER_ARGS=()
